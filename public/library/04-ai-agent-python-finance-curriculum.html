@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>カリキュラム（ファイナンスデータサイエンス）1: AIエージェント × Python金融データ分析 | Financial Data Science Lab</title><meta name="description" content=" コンセプト ChatGPT Codex、Claude Code、Cursorなどの**AIコーディングエージェント**を活用し、Pythonによる金融データ分析を「自分でコードを全部書く」のではなく「AIに指示して分析を実行させる」スタイルで学ぶカリキュラム。 従来の"><link rel="stylesheet" href="../style.css?v=finance-library-1"></head>
+<body><header class="site-header"><a class="logo" href="../index.html">Financial Data Science Lab</a><nav><a href="../index.html#reports">レポート</a><a href="../library/index.html">ライブラリ</a><a href="../downloads/python-finance-starter-kit.html">スターターキット</a></nav></header>
+<main class="article-wrap library-page"><article class="article"><p class="eyebrow">金融データ分析</p><h1>カリキュラム（ファイナンスデータサイエンス）1: AIエージェント × Python金融データ分析</h1><div class="article-meta"><span>金融データ分析</span><span>03-ai-market-research-education/04_ai_agent_python_finance_curriculum.md</span></div><div class="note-body">
+<h2>このカリキュラムのコンセプト</h2>
+<p>「Pythonで金融データを分析してみたいけれど、プログラミングをイチから全部覚えるのは大変そう…」そう思っていませんか？</p>
+<p>このカリキュラムでは、ChatGPTやClaude、Cursorといった**AIコーディングエージェント**を味方につけて、プログラムを「自分で全部書く」のではなく「AIに上手に指示を出して代わりに書いてもらう」という現代的で賢いスタイルで学習を進めていきます。</p>
+<p>難解な専門書に書かれているような本格的な金融データ分析の知識も、AIエージェントとタッグを組むことで、初心者でも挫折せずに楽しく身につけることができますよ！</p>
+<h2>大切なお約束（注意事項）</h2>
+<p>このカリキュラムは、「この銘柄を買えば儲かる」といった投資のアドバイスや売買の推奨は一切行いません。あくまでも、金融データの集め方やPythonでの整理方法、そして便利なAIエージェントの使い方を楽しく学ぶための勉強用コンテンツです。</p>
+<p>---</p>
+<h2>第1部: 基盤構築（Week 1-2）</h2>
+<h3>第1章: AIエージェントと金融データ分析の全体像</h3>
+<p>目的: AIエージェントで何ができるかを理解し、分析環境を整える。</p>
+<p>内容:</p>
+<ul>
+<li>AIコーディングエージェントとは何か（Codex / Claude Code / Cursor / Antigravity）</li>
+<li>従来のPython学習との違い: コードを書くからコードを指示するへ</li>
+<li>エージェントに渡す「プロンプト」の基本構造</li>
+<li>Google Colab / ローカル環境 / クラウドサンドボックスの選び方</li>
+<li>必須ライブラリ一覧: pandas, numpy, matplotlib, mplfinance, yfinance, requests</li>
+</ul>
+<p>ワーク:</p>
+<ul>
+<li>AIエージェントにpandas/numpy/matplotlibのインストールスクリプトを書かせる</li>
+<li>Google Colabで動作確認する</li>
+</ul>
+<h3>第2章: Pythonの基礎をAIエージェントで学ぶ</h3>
+<p>目的: Python未経験でも、AIエージェントとの対話で基礎を身につける。</p>
+<p>内容:</p>
+<ul>
+<li>変数、リスト、辞書、ループ、関数の基本</li>
+<li>pandasのDataFrame操作（読み込み、フィルタ、集計）</li>
+<li>numpyのベクトル演算</li>
+<li>AIエージェントへの指示: 「このCSVを読み込んで、列Aの平均を出して」</li>
+<li>エージェントの出力コードを読む力をつける</li>
+</ul>
+<p>ワーク:</p>
+<ul>
+<li>サンプルCSVをAIエージェントに渡して基本集計させる</li>
+<li>出力されたコードの各行の意味を確認する</li>
+</ul>
+<p>---</p>
+<h2>第2部: 金融データの取得と整形（Week 3-4）</h2>
+<h3>第3章: 金融データソースとAPI</h3>
+<p>目的: 分析に必要なデータをPythonで取得する方法を学ぶ。</p>
+<p>内容:</p>
+<ul>
+<li>yfinance / Yahoo Finance APIでの株価・為替・暗号資産データ取得</li>
+<li>OANDA API / Binance APIの基本</li>
+<li>Hyperliquid APIでの約定（fills）データ取得</li>
+<li>FRED（米連邦準備制度）APIでの金利・経済指標取得</li>
+<li>CSVファイルからのデータ読み込み</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「yfinanceを使って、BTCUSDの過去1年間の日足データを取得し、
+CSVに保存するPythonスクリプトを書いてください。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>BTCUSD、日経225、米国10年国債利回りの3種類のデータを取得する</li>
+<li>Hyperliquid APIから特定IDのfillsを取得する</li>
+</ul>
+<h3>第4章: データ前処理とクレンジング</h3>
+<p>目的: 生データを分析可能な状態に整える。</p>
+<p>内容:</p>
+<ul>
+<li>欠損値の処理</li>
+<li>タイムゾーン変換（UTC → JST）</li>
+<li>OHLCV（始値・高値・安値・終値・出来高）データの構造理解</li>
+<li>リサンプリング（M1 → H1 → Daily）</li>
+<li>複数データソースの結合（merge / join）</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「このCSVの日時列をUTCからJSTに変換し、
+1時間足にリサンプリングしてください。欠損値はforward fillで補完。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>M1データをH1に変換するスクリプトをAIに書かせる</li>
+<li>金利データと価格データを日付で結合する</li>
+</ul>
+<p>---</p>
+<h2>第3部: 金融分析の実践（Week 5-8）</h2>
+<h3>第5章: データ可視化</h3>
+<p>目的: グラフとチャートで金融データを視覚的に理解する。</p>
+<p>内容:</p>
+<ul>
+<li>matplotlib / mplfinanceによるローソク足チャート</li>
+<li>移動平均線（SMA / EMA）のプロット</li>
+<li>ボリュームの可視化</li>
+<li>ヒートマップ（時間帯別・曜日別の変動率）</li>
+<li>相関マトリクス（複数資産の相関分析）</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「BTCUSDの日足ローソク足チャートに20日と50日の移動平均線を重ねて、
+ボリュームも下部に表示してください。mplfinanceを使用。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>ローソク足 + 移動平均線チャートを作成する</li>
+<li>時間帯別変動率のヒートマップを作成する</li>
+</ul>
+<h3>第6章: 金融時系列分析</h3>
+<p>目的: 時系列データの統計的特性を理解する。</p>
+<p>内容:</p>
+<ul>
+<li>リターン計算（単純リターン / 対数リターン）</li>
+<li>ボラティリティ（ヒストリカル / ローリング）</li>
+<li>正規性の検定（Shapiro-Wilk / Jarque-Bera）</li>
+<li>自己相関分析（ACF / PACF）</li>
+<li>定常性の検定（ADF検定）</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「BTCUSDの日次対数リターンを計算し、
+正規性のShapiro-Wilk検定と、30日ローリングボラティリティを
+グラフ付きで出力してください。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>BTCUSDのリターン分布を可視化する</li>
+<li>ボラティリティの変動パターンを確認する</li>
+</ul>
+<h3>第7章: ポートフォリオ分析</h3>
+<p>目的: 複数資産の組み合わせを定量的に評価する。</p>
+<p>内容:</p>
+<ul>
+<li>シャープレシオの計算</li>
+<li>最大ドローダウンの算出</li>
+<li>効率的フロンティア（平均分散最適化）</li>
+<li>リスク・リターンの散布図</li>
+<li>相関分析と分散効果</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「BTC、ETH、Gold、S&amp;P500の過去2年間の日次リターンを使って、
+等配分ポートフォリオのシャープレシオと最大ドローダウンを計算してください。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>4資産ポートフォリオの効率的フロンティアを描く</li>
+<li>最適配分比率をAIに算出させる</li>
+</ul>
+<h3>第8章: バックテスト入門</h3>
+<p>目的: トレード戦略をPythonで検証する基本を学ぶ。</p>
+<p>内容:</p>
+<ul>
+<li>ベクトル化バックテストの仕組み</li>
+<li>シグナル生成（ゴールデンクロス / デッドクロス）</li>
+<li>取引コスト・スリッページの反映</li>
+<li>PF（プロフィットファクター）、勝率、最大DDの計算</li>
+<li>ルックアヘッドバイアスの回避</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「BTCUSDの日足データで、20日SMAと50日SMAのゴールデンクロスで買い、
+デッドクロスで売る戦略のバックテストを実装してください。
+取引コスト0.1%を反映し、PF・勝率・最大DDを出力。
+未来データの参照がないことを確認できるコードにしてください。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>SMAクロス戦略のバックテストを実行する</li>
+<li>パラメータを変えてPFの変化を観察する</li>
+</ul>
+<p>---</p>
+<h2>第4部: 機械学習と予測（Week 9-12）</h2>
+<h3>第9章: 機械学習による市場分析</h3>
+<p>目的: scikit-learnを使い、価格データからパターンを検出する。</p>
+<p>内容:</p>
+<ul>
+<li>特徴量エンジニアリング（テクニカル指標を特徴量に）</li>
+<li>分類モデル（ロジスティック回帰 / ランダムフォレスト / XGBoost）</li>
+<li>学習データとテストデータの分割（時系列対応）</li>
+<li>ウォークフォワード検証</li>
+<li>過学習の検出と防止</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「BTCUSDの日足データから、RSI、MACD、ボリンジャーバンド幅を特徴量として、
+翌日の上昇/下降をランダムフォレストで分類するモデルを作ってください。
+時系列を考慮してウォークフォワード検証で評価。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>3つの特徴量でモデルを学習・評価する</li>
+<li>精度が出ない場合の改善方法をAIに相談する</li>
+</ul>
+<h3>第10章: 深層学習の基礎（LSTM / Transformer）</h3>
+<p>目的: ディープラーニングによる時系列予測の概念を理解する。</p>
+<p>内容:</p>
+<ul>
+<li>LSTM（Long Short-Term Memory）の仕組み</li>
+<li>時系列データのシーケンス化</li>
+<li>TensorFlow / PyTorchの基本</li>
+<li>Transformerベースの時系列予測の概念</li>
+<li>予測精度の評価と限界の理解</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「BTCUSDの過去60日間の終値を入力として、
+翌日の終値を予測するLSTMモデルをKerasで構築してください。
+学習曲線と予測結果のグラフも出力。」</code></pre>
+<p>ワーク:</p>
+<ul>
+<li>LSTMモデルを構築し、予測精度を確認する</li>
+<li>「予測モデルの限界」をAIに要約させる</li>
+</ul>
+<p>---</p>
+<h2>第5部: 実践プロジェクト（Week 13-16）</h2>
+<h3>第11章: Hyperliquidクジラ分析プロジェクト</h3>
+<p>目的: 実際のオンチェーンデータを使った総合分析プロジェクト。</p>
+<p>内容:</p>
+<ul>
+<li>Hyperliquid APIからのfills取得</li>
+<li>大口トレーダー（クジラ）のID抽出と分類</li>
+<li>取引パターンの可視化（エントリー時間、銘柄偏り、PF）</li>
+<li>複数クジラの同期トレード検出</li>
+<li>BTCチャート上への取引ポイントプロット</li>
+<li>分析結果のレポート化</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「Hyperliquidのfills CSVから、closedPnlの合計が上位10のIDを抽出し、
+各IDの取引頻度、勝率、PFを計算してください。
+さらに、BTCのH1チャート上にそれぞれの取引ポイントを
+三角マーカーでプロットしてください。」</code></pre>
+<h3>第12章: 週次マーケットレポート自動生成</h3>
+<p>目的: 複数データソースを統合し、AIで自動レポートを生成する。</p>
+<p>内容:</p>
+<ul>
+<li>金利、通貨、株価、コモディティ、暗号資産データの一括取得</li>
+<li>データの自動集計とグラフ生成</li>
+<li>AIによるマーケット概要の要約生成</li>
+<li>Markdown / PDF形式でのレポート出力</li>
+<li>定期実行の仕組み（cron / GitHub Actions）</li>
+</ul>
+<p>AIエージェント活用法:</p>
+<pre><code>プロンプト例:
+「yfinanceとFRED APIから今週のBTC、S&amp;P500、米国10年国債利回り、
+金、原油のデータを取得し、前週比の変化率をテーブルにまとめ、
+各資産のチャートを生成し、Markdownレポートとして出力してください。」</code></pre>
+<h3>第13章: 受託・発信のためのポートフォリオ作成</h3>
+<p>目的: 学んだスキルを受託案件やコンテンツ発信に活かす。</p>
+<p>内容:</p>
+<ul>
+<li>分析実績のデモレポート3本の作成</li>
+<li>CrowdWorks / Lancers用の出品文作成</li>
+<li>note記事・YouTube台本への変換</li>
+<li>投資助言にならない表現ガイドラインの適用</li>
+<li>ポートフォリオサイトの構成</li>
+</ul>
+<p>ワーク:</p>
+<ul>
+<li>デモレポートをAIエージェントと共同で3本作成する</li>
+<li>受託サービスの価格表を整理する</li>
+</ul>
+<p>---</p>
+<h2>付録</h2>
+<h3>付録A: AIエージェント比較表</h3>
+<table>
+<tr><th>エージェント</th><th>特徴</th><th>金融分析での使いどころ</th><th>価格帯</th></tr>
+<tr><td>ChatGPT Codex</td><td>クラウドサンドボックスで自律実行、リポジトリ管理</td><td>大規模なバックテスト、コードベース管理</td><td>Plus以上</td></tr>
+<tr><td>Claude Code</td><td>ターミナル統合、長時間タスク</td><td>データ前処理、レポート生成</td><td>Pro以上</td></tr>
+<tr><td>Cursor</td><td>IDE統合、リアルタイムコード補完</td><td>インタラクティブな分析、デバッグ</td><td>Pro: 月額$20</td></tr>
+<tr><td>Antigravity</td><td>ブラウザ操作、MCP連携、マルチツール</td><td>Notion連携、Web情報収集、統合ワークフロー</td><td>-</td></tr>
+<tr><td>Google Colab + Gemini</td><td>ノートブック内AI、GPU利用可</td><td>機械学習モデルの学習、可視化</td><td>無料〜Pro</td></tr>
+</table>
+<h3>付録B: プロンプト設計のコツ</h3>
+<p>金融データ分析をAIエージェントに依頼するときのルール:</p>
+<ol>
+<li>入力データの形式を明記する（CSV、列名、期間）</li>
+<li>出力形式を指定する（グラフ、テーブル、CSV、レポート）</li>
+<li>使用ライブラリを指定する（pandas, mplfinance等）</li>
+<li>投資助言ではないことを前提に含める</li>
+<li>ルックアヘッドバイアスなどの制約条件を明記する</li>
+<li>エラー時の対処方針を伝える</li>
+</ol>
+<h3>付録C: 推奨学習リソース</h3>
+<p>参考書籍:</p>
+<ul>
+<li>Pythonによるファイナンス 第2版（オライリー・ジャパン）</li>
+<li>Pythonからはじめるアルゴリズムトレード（オライリー・ジャパン）</li>
+</ul>
+<p>参考サイト:</p>
+<ul>
+<li>QuantConnect（バックテストプラットフォーム）</li>
+<li>Kaggle Financial Datasets</li>
+<li>FRED Economic Data</li>
+<li>Hyperliquid API Documentation</li>
+</ul>
+<p>---</p>
+<h2>このカリキュラムの進め方</h2>
+<ol>
+<li>まずは、各章のワークをAIエージェントに頼みながら一緒に実行してみましょう。</li>
+<li>AIが書いてくれたコードをただコピペするだけでなく、「この1行はどういう意味かな？」とAIに質問して、少しずつ理解を深めていきます。</li>
+<li>分析してわかったことを、スターターキットに入っている「レポートテンプレート」に書き込んでみましょう。</li>
+<li>できあがったレポートをもとに、noteの記事を書いたりYouTubeの台本を作ったりして、楽しくアウトプットしてみましょう！</li>
+<li>作成したレポートは、将来ココナラやクラウドワークスなどでデータ分析のお仕事を受けるときの「あなたのポートフォリオ（実績）」としてアピールできます。</li>
+</ol>
+<p><strong>★ 最後にいちばん大切なこと：</strong><br>
+AIエージェントは、面倒なコード書きやグラフ作成を劇的に楽にしてくれる「超優秀なアシスタント」ですが、投資の判断まで決めてくれる魔法の道具ではありません。データの整理やグラフ作りはAIに任せつつ、そこから「何が読み取れるか」の解釈はご自身の頭で楽しんで考えてみてくださいね！</p></div><section class="article-cta"><h2>次に読む</h2><p>金融データ分析を、学習・レポート・発信コンテンツへ変換していきます。</p><div class="actions"><a class="button primary" href="../library/index.html">ライブラリへ戻る</a><a class="button secondary" href="../reports/statistics-sample-report.html">サンプルレポートを見る</a></div></section></article></main></body></html>

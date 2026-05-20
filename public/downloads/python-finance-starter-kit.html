@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python金融データ分析スターターキット</title>
+  <meta name="description" content="Pythonで金融データを読み込み、統計量・グラフ・AI要約レポートまで作るための実践型スターターキット。">
+  <link rel="stylesheet" href="../style.css?v=finance-lab-2">
+</head>
+<body>
+  <header class="site-header"><a class="logo" href="../index.html">Financial Data Science Lab</a><nav><a href="../index.html#services">メニュー</a><a href="../reports/statistics-sample-report.html">サンプルレポート</a></nav></header>
+  <main class="article-wrap kit-page">
+    <article class="article">
+      <p class="eyebrow">Starter Kit</p>
+      <h1>Python金融データ分析スターターキット</h1>
+      <p class="lead">ただ読む資料ではなく、手を動かして「CSV → 統計 → グラフ → AI要約」まで作れるワークブックです。</p>
+
+      <section class="kit-hero-card">
+        <div><h2>ゴール</h2><p>1つの金融データを選び、Pythonで読み込み、統計量を出し、2種類のグラフを作り、AIでレポート化する。</p></div>
+        <ul class="check-list"><li>投資助言ではなく分析学習として扱う</li><li>平均・標準偏差・最大値・最小値を説明できる</li><li>グラフを見て傾向と限界を書ける</li></ul>
+      </section>
+
+      <h2>Step 1. 分析テーマを決める</h2>
+      <div class="worksheet-grid">
+        <div class="worksheet"><h3>初心者向け</h3><p>BTCの日次終値を使って、日次リターンの平均とばらつきを見る。</p></div>
+        <div class="worksheet"><h3>中級向け</h3><p>曜日別・時間帯別に変動率を集計し、いつ値動きが大きいか確認する。</p></div>
+        <div class="worksheet"><h3>発信用</h3><p>統計結果とグラフを、noteやブログ用の学習レポートに変換する。</p></div>
+      </div>
+
+      <h2>Step 2. CSVテンプレート</h2>
+      <p>最初はこの4列だけで十分です。ExcelやGoogleスプレッドシートで作ってCSV保存します。</p>
+      <table><tr><th>date</th><th>symbol</th><th>close</th><th>volume</th></tr><tr><td>2026-01-01</td><td>BTCUSD</td><td>43000</td><td>120340</td></tr><tr><td>2026-01-02</td><td>BTCUSD</td><td>43800</td><td>132910</td></tr><tr><td>2026-01-03</td><td>BTCUSD</td><td>42100</td><td>158220</td></tr></table>
+
+      <h2>Step 3. Pythonコード</h2>
+      <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+# 1. CSVを読み込む
+df = pd.read_csv("market_data.csv", parse_dates=["date"])
+df = df.sort_values("date")
+
+# 2. 日次リターンを計算する
+df["return"] = df["close"].pct_change()
+
+# 3. 統計量を出す
+stats = {
+    "平均リターン": df["return"].mean(),
+    "標準偏差": df["return"].std(),
+    "最大上昇": df["return"].max(),
+    "最大下落": df["return"].min(),
+    "サンプル数": df["return"].count(),
+}
+print(pd.Series(stats))
+
+# 4. グラフを描く
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+df.plot(x="date", y="close", ax=axes[0], title="Close Price")
+df["return"].hist(ax=axes[1], bins=12)
+axes[1].set_title("Daily Return Distribution")
+plt.tight_layout()
+plt.show()</code></pre>
+
+      <h2>Step 4. 結果記入シート</h2>
+      <table><tr><th>項目</th><th>結果</th><th>初心者向け説明</th></tr><tr><td>平均リターン</td><td></td><td>期間中、1日あたり平均でどれくらい動いたか。</td></tr><tr><td>標準偏差</td><td></td><td>日々の値動きのばらつき。大きいほど上下に振れやすい。</td></tr><tr><td>最大上昇</td><td></td><td>最も大きく上がった日の変化率。</td></tr><tr><td>最大下落</td><td></td><td>最も大きく下がった日の変化率。</td></tr><tr><td>サンプル数</td><td></td><td>分析に使った有効データ数。少なすぎると信頼しにくい。</td></tr></table>
+
+      <h2>Step 5. グラフの見方</h2>
+      <div class="report-grid mini-grid"><article class="report-card"><span>01</span><h3>価格推移</h3><p>上昇・下落の方向だけでなく、どこで急に動いたかを見る。</p></article><article class="report-card"><span>02</span><h3>分布</h3><p>多くの日が中心に集まるか、端の大きな変動が多いかを見る。</p></article><article class="report-card"><span>03</span><h3>限界</h3><p>過去データだけでは未来を断定できない。期間とサンプル数を書く。</p></article></div>
+
+      <h2>Step 6. AIレポート化プロンプト</h2>
+      <pre><code>あなたは金融データ分析レポートの編集者です。
+以下のPython分析結果を、投資助言ではなく学習用レポートとしてまとめてください。
+
+入力:
+- データ期間:
+- サンプル数:
+- 平均リターン:
+- 標準偏差:
+- 最大上昇:
+- 最大下落:
+- グラフから見えたこと:
+
+出力形式:
+1. 分析の目的
+2. データ概要
+3. 統計結果の読み方
+4. グラフから見える傾向
+5. この分析の限界
+6. 次に追加したい分析
+7. 注意事項: 投資助言ではないこと</code></pre>
+
+      <section class="warning"><h2>注意事項</h2><p>このスターターキットはデータ分析の学習用です。特定銘柄や暗号資産の購入・売却を推奨するものではありません。</p></section>
+    </article>
+  </main>
+</body>
+</html>

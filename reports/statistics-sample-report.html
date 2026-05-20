@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BTC日次リターン統計レポート | Financial Data Science Lab</title>
+  <meta name="description" content="BTCのサンプル価格データを使い、日次リターン、平均、標準偏差、最大下落、ヒストグラムをわかりやすくまとめた金融データ分析レポートです。">
+  <link rel="stylesheet" href="../style.css?v=finance-lab-2">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="../index.html">Financial Data Science Lab</a>
+    <nav><a href="../index.html#reports">レポート一覧</a><a href="../downloads/python-finance-starter-kit.html">スターターキット</a></nav>
+  </header>
+
+  <main class="article-wrap report-page">
+    <article class="article">
+      <p class="eyebrow">Sample Statistical Report</p>
+      <h1>BTC日次リターン統計レポート</h1>
+      <p class="lead">このサンプルでは、架空のBTC終値データを使って「価格がどれくらい動いたか」「変動が大きい日はどこか」「平均とばらつきはどの程度か」を、グラフと数字で確認します。</p>
+
+      <section class="warning soft-warning">
+        <h2>このレポートの目的</h2>
+        <p>目的は相場予想ではありません。Pythonで価格データを読み、日次リターンを計算し、統計量とグラフで市場の特徴を説明する練習です。</p>
+      </section>
+
+      <section class="stat-grid">
+        <div class="stat-card"><span>平均日次リターン</span><strong>+0.18%</strong><small>サンプル期間の1日あたり平均</small></div>
+        <div class="stat-card"><span>標準偏差</span><strong>2.42%</strong><small>日々の値動きのばらつき</small></div>
+        <div class="stat-card"><span>最大上昇日</span><strong>+6.8%</strong><small>最も強く上昇した日</small></div>
+        <div class="stat-card"><span>最大下落日</span><strong>-5.9%</strong><small>最も強く下落した日</small></div>
+      </section>
+
+      <h2>1. 終値の推移</h2>
+      <p>まず価格そのものを線グラフで確認します。価格が上がった・下がっただけでなく、どの区間で変動が大きくなったかを見るのがポイントです。</p>
+      <div class="chart-panel">
+        <svg viewBox="0 0 900 360" role="img" aria-label="BTC終値推移のサンプル折れ線グラフ">
+          <rect x="0" y="0" width="900" height="360" rx="22" fill="#ffffff"/>
+          <g stroke="#dbeafe" stroke-width="1">
+            <line x1="70" y1="60" x2="840" y2="60"/><line x1="70" y1="130" x2="840" y2="130"/><line x1="70" y1="200" x2="840" y2="200"/><line x1="70" y1="270" x2="840" y2="270"/>
+            <line x1="70" y1="42" x2="70" y2="300"/><line x1="840" y1="42" x2="840" y2="300"/>
+          </g>
+          <polyline points="70,248 125,232 180,238 235,210 290,190 345,204 400,168 455,155 510,178 565,132 620,118 675,144 730,92 785,104 840,72" fill="none" stroke="#2563eb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M70 248 C180 230 235 210 290 190 S400 168 455 155 565 132 620 118 730 92 840 72 L840 300 L70 300 Z" fill="rgba(37,99,235,.10)"/>
+          <text x="70" y="330" fill="#5c6b80" font-size="18">Day 1</text><text x="765" y="330" fill="#5c6b80" font-size="18">Day 15</text>
+          <text x="70" y="38" fill="#10213f" font-size="22" font-weight="800">Sample BTC Close Price</text>
+        </svg>
+      </div>
+
+      <h2>2. 日次リターンの分布</h2>
+      <p>次に、1日ごとの変化率をヒストグラムで見ます。中心に集まっているほど通常の値動きが多く、左右の端が大きいほど急騰・急落の日が目立ちます。</p>
+      <div class="chart-panel">
+        <svg viewBox="0 0 900 360" role="img" aria-label="日次リターン分布のサンプルヒストグラム">
+          <rect x="0" y="0" width="900" height="360" rx="22" fill="#ffffff"/>
+          <g stroke="#dbeafe"><line x1="70" y1="290" x2="840" y2="290"/><line x1="70" y1="220" x2="840" y2="220"/><line x1="70" y1="150" x2="840" y2="150"/><line x1="70" y1="80" x2="840" y2="80"/></g>
+          <g>
+            <rect x="90" y="244" width="58" height="46" rx="10" fill="#93c5fd"/><rect x="170" y="202" width="58" height="88" rx="10" fill="#60a5fa"/><rect x="250" y="122" width="58" height="168" rx="10" fill="#2563eb"/><rect x="330" y="78" width="58" height="212" rx="10" fill="#22c7c9"/><rect x="410" y="104" width="58" height="186" rx="10" fill="#22c7c9"/><rect x="490" y="152" width="58" height="138" rx="10" fill="#2563eb"/><rect x="570" y="214" width="58" height="76" rx="10" fill="#60a5fa"/><rect x="650" y="248" width="58" height="42" rx="10" fill="#f59e0b"/><rect x="730" y="264" width="58" height="26" rx="10" fill="#fb7185"/>
+          </g>
+          <text x="70" y="38" fill="#10213f" font-size="22" font-weight="800">Daily Return Distribution</text>
+          <text x="84" y="326" fill="#5c6b80" font-size="16">-6%</text><text x="390" y="326" fill="#5c6b80" font-size="16">0%</text><text x="742" y="326" fill="#5c6b80" font-size="16">+6%</text>
+        </svg>
+      </div>
+
+      <h2>3. 読み取りメモ</h2>
+      <table>
+        <tr><th>観点</th><th>読み取り例</th></tr>
+        <tr><td>平均</td><td>サンプル期間では小さくプラス。ただし期間を変えると結果も変わる。</td></tr>
+        <tr><td>標準偏差</td><td>1日あたり2〜3%程度の変動があり、短期では上下に振れやすい。</td></tr>
+        <tr><td>分布</td><td>多くの日は中心付近に集まるが、まれに大きな上昇・下落がある。</td></tr>
+        <tr><td>注意点</td><td>この分析だけで将来価格は予測できない。出来高、金利、ニュースなど追加データが必要。</td></tr>
+      </table>
+
+      <h2>4. Pythonで再現するコード例</h2>
+      <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+# CSV: date, close
+df = pd.read_csv("btc_sample.csv", parse_dates=["date"])
+df["return"] = df["close"].pct_change()
+
+summary = df["return"].describe()
+print(summary)
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+df.plot(x="date", y="close", ax=axes[0], title="Close Price")
+df["return"].hist(ax=axes[1], bins=12)
+axes[1].set_title("Daily Return Distribution")
+plt.tight_layout()
+plt.show()</code></pre>
+
+      <h2>5. AI要約プロンプト</h2>
+      <pre><code>以下の統計結果を、投資助言ではなく学習用レポートとして要約してください。
+
+条件:
+- 将来価格の断定予測をしない
+- 平均、標準偏差、最大上昇、最大下落を初心者向けに説明する
+- 分布グラフから読み取れることを整理する
+- データ期間とサンプル数の限界を書く
+- 次に追加するとよい分析を3つ提案する</code></pre>
+
+      <section class="warning"><h2>注意事項</h2><p>このレポートは金融データ分析の学習用サンプルです。投資助言、売買推奨、将来の価格予測ではありません。</p></section>
+    </article>
+  </main>
+</body>
+</html>

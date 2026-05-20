@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Python金融データ分析・可視化パック | Financial Data Science Lab</title><meta name="description" content=" サービス概要 金融・暗号資産・FX・株価・バックテスト・取引履歴などのデータを、Pythonで整形・集計・可視化し、分析レポートとして納品するサービス。 投資助言や売買判断ではなく、データ処理、検証、可視化、レポート作成を行う。 一言で言うと 手元にある金融データを、"><link rel="stylesheet" href="../style.css?v=finance-library-1"></head>
+<body><header class="site-header"><a class="logo" href="../index.html">Financial Data Science Lab</a><nav><a href="../index.html#reports">レポート</a><a href="../library/index.html">ライブラリ</a><a href="../downloads/python-finance-starter-kit.html">スターターキット</a></nav></header>
+<main class="article-wrap library-page"><article class="article"><p class="eyebrow">金融データ分析</p><h1>Python金融データ分析・可視化パック</h1><div class="article-meta"><span>金融データ分析</span><span>03-ai-market-research-education/03_python_financial_data_analysis_service.md</span></div><div class="note-body">
+<h2>サービス概要</h2>
+<p>金融・暗号資産・FX・株価・バックテスト・取引履歴などのデータを、Pythonで整形・集計・可視化し、分析レポートとして納品するサービス。</p>
+<p>投資助言や売買判断ではなく、データ処理、検証、可視化、レポート作成を行う。</p>
+<h2>一言で言うと</h2>
+<p>手元にある金融データを、Pythonで見やすい表・グラフ・レポートに変換します。</p>
+<h2>対応できる仕事</h2>
+<ul>
+<li>CSV / Excelデータの整形</li>
+<li>価格データの時間帯別・曜日別分析</li>
+<li>バックテスト結果の集計</li>
+<li>PF、勝率、最大ドローダウン、損益推移の整理</li>
+<li>取引履歴・約定履歴の損益分析</li>
+<li>暗号資産APIデータの取得・CSV化</li>
+<li>Hyperliquid fillsの集計</li>
+<li>グラフ画像の作成</li>
+<li>Markdown / Word / PDF形式の簡易レポート作成</li>
+<li>再実行用Pythonスクリプトの納品</li>
+</ul>
+<h2>対応しない仕事</h2>
+<ul>
+<li>個別銘柄の売買判断</li>
+<li>エントリー価格や利確・損切りラインの助言</li>
+<li>利益保証</li>
+<li>自動売買の本番発注</li>
+<li>APIキーや秘密鍵を預かる運用</li>
+<li>投資顧問契約にあたる個別助言</li>
+</ul>
+<h2>納品物</h2>
+<p>案件内容に応じて、以下を組み合わせて納品する。</p>
+<ul>
+<li>Pythonスクリプト</li>
+<li>整形済みCSV</li>
+<li>集計表</li>
+<li>グラフ画像</li>
+<li>分析メモ</li>
+<li>簡易レポート</li>
+<li>再実行手順</li>
+</ul>
+<h2>料金目安</h2>
+<h3>ライト</h3>
+<p>価格:</p>
+<p>30,000円から50,000円</p>
+<p>内容:</p>
+<ul>
+<li>CSV 1種類</li>
+<li>基本集計</li>
+<li>グラフ2から3点</li>
+<li>簡易メモ</li>
+</ul>
+<h3>スタンダード</h3>
+<p>価格:</p>
+<p>80,000円から150,000円</p>
+<p>内容:</p>
+<ul>
+<li>複数CSVまたはAPIデータ</li>
+<li>前処理</li>
+<li>時間帯別・曜日別・銘柄別などの分析</li>
+<li>グラフ5点前後</li>
+<li>Pythonコード</li>
+<li>レポート</li>
+</ul>
+<h3>カスタム</h3>
+<p>価格:</p>
+<p>200,000円以上</p>
+<p>内容:</p>
+<ul>
+<li>継続的な分析基盤</li>
+<li>ダッシュボード化</li>
+<li>レポートテンプレート化</li>
+<li>複数データソース統合</li>
+<li>教材化・発信用コンテンツ化</li>
+</ul>
+<h2>ポートフォリオ実例に使うもの</h2>
+<h3>実例1: BTCUSD時間帯別大変動分析</h3>
+<p>BTCUSDの価格データを使い、日本時間で大きな変動が出やすい時間帯を集計。</p>
+<p>見せ方:</p>
+<ul>
+<li>入力: BTCUSD M1データ</li>
+<li>処理: H1変換、3時間後・6時間後の大変動率を集計</li>
+<li>出力: 時間帯別テーブル、Markdownレポート</li>
+</ul>
+<h3>実例2: BTCUSD no-lookaheadバックテスト集計</h3>
+<p>BTCUSDのバックテスト結果を、未来データ参照を避ける設計で検証。</p>
+<p>見せ方:</p>
+<ul>
+<li>入力: BTCUSD価格データ</li>
+<li>処理: シグナル生成、コスト反映、トレード集計</li>
+<li>出力: PF、勝率、最大ドローダウン、年別集計</li>
+</ul>
+<h3>実例3: Hyperliquid fills集計</h3>
+<p>Hyperliquidの約定履歴をBTCに絞り、close / open、buy / sell、closedPnl、推定エントリー時間を整理。</p>
+<p>見せ方:</p>
+<ul>
+<li>入力: fills CSV</li>
+<li>処理: BTC抽出、損益集計、推定エントリー価格計算</li>
+<li>出力: 集計CSV、再現メモ、分析レポート</li>
+</ul>
+<h2>出品文のたたき台</h2>
+<h3>タイトル</h3>
+<p>Pythonで金融データ・暗号資産データを集計、可視化、レポート化します</p>
+<h3>本文</h3>
+<p>お手元の金融データ、暗号資産データ、FXデータ、バックテスト結果、取引履歴などを、Pythonで整形・集計・可視化します。</p>
+<p>対応できる内容:</p>
+<ul>
+<li>CSV / Excelデータの整理</li>
+<li>時間帯別・曜日別・銘柄別の集計</li>
+<li>バックテスト結果の集計</li>
+<li>PF、勝率、最大ドローダウン、損益推移の可視化</li>
+<li>取引履歴・約定履歴の分析</li>
+<li>グラフ作成</li>
+<li>簡易レポート作成</li>
+<li>再実行用Pythonコード納品</li>
+</ul>
+<p>本サービスは、投資助言や売買推奨ではありません。</p>
+<p>特定の銘柄の購入・売却判断、エントリー価格、利確・損切りライン、利益保証などは行いません。</p>
+<p>あくまで、データ処理・集計・可視化・レポート作成を行うサービスです。</p>
+<h3>依頼時にいただきたいもの</h3>
+<ul>
+<li>分析したいデータ</li>
+<li>データ形式</li>
+<li>知りたいこと</li>
+<li>希望するグラフや表</li>
+<li>納品形式</li>
+</ul>
+<h3>納品形式</h3>
+<ul>
+<li>Pythonスクリプト</li>
+<li>CSV</li>
+<li>PNGグラフ</li>
+<li>Markdown / Word / PDFレポート</li>
+<li>再実行手順</li>
+</ul></div><section class="article-cta"><h2>次に読む</h2><p>金融データ分析を、学習・レポート・発信コンテンツへ変換していきます。</p><div class="actions"><a class="button primary" href="../library/index.html">ライブラリへ戻る</a><a class="button secondary" href="../reports/statistics-sample-report.html">サンプルレポートを見る</a></div></section></article></main></body></html>
