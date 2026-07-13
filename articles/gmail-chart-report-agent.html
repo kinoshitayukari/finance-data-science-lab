@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gmailに届くチャート画像を、AI Agentで定期レポート化した事例 | Financial Data Science Lab</title>
+  <meta name="description" content="Gmailのチャート画像を銘柄ごとに整理・比較し、人間が確認しやすい定期レポートへ変えるAI Agent活用事例です。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Gmailに届くチャート画像を、AI Agentで定期レポート化した事例">
+  <meta property="og:description" content="画像の整理、比較、観察メモ作成をAgentに任せ、最終判断は人が行う金融リサーチ自動化。">
+  <meta property="og:image" content="https://finance-data-science-lab.vercel.app/assets/gmail-chart-report-agent.png">
+  <link rel="stylesheet" href="../style.css?v=finance-lab-4">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="../index.html">Financial Data Science Lab</a>
+    <nav><a href="../index.html#articles">記事</a><a href="../library/index.html">ライブラリ</a><a href="../reports/statistics-sample-report.html">レポート</a></nav>
+  </header>
+  <main class="article-wrap note-article-page">
+    <article class="article note-article">
+      <p class="eyebrow">Case Study / Gmail × AI Agent</p>
+      <h1>Gmailに届くチャート画像を、<br>AI Agentで定期レポート化した事例</h1>
+      <p class="lead">大量のチャート画像を探し、組み合わせ、比較してメモを書く。毎日続けると重くなる作業を、Agentで「人が判断できる状態」まで整理した事例です。</p>
+      <div class="article-meta"><span>Theme: 金融 × AI Agent</span><span>Category: 画像レポート自動化</span><span>読了目安: 7分</span></div>
+      <img src="../assets/gmail-chart-report-agent.png" alt="Gmailチャート画像を定期レポート化" style="display:block;width:100%;margin:28px 0 36px;border-radius:28px;box-shadow:0 22px 58px rgba(18,52,90,.18)">
+      <section class="warning soft-warning"><h2>この記事の立ち位置</h2><p>この記事は投資助言、売買推奨、収益保証ではありません。AI Agentで投資判断を自動化するのではなく、調査材料を整理し、人間が確認しやすいレポートにする事例です。</p></section>
+
+      <div class="note-body">
+        <h2>毎回チャートを見る作業は、思ったより消耗する</h2>
+        <p>チャート画像を見て判断する作業は、一見すると「見るだけ」に見えます。しかし、実際にはかなり細かい作業が重なっています。</p>
+        <ul>
+          <li>Gmailから対象メールを探す</li>
+          <li>添付画像を開く</li>
+          <li>銘柄ごとに短期画像と長期画像をそろえる</li>
+          <li>Zone、Line、支持抵抗、ローソク足の流れを見る</li>
+          <li>銘柄ごとのメモを書く</li>
+          <li>買い優勢、売り優勢、待機を整理する</li>
+          <li>判断前の注意点を書く</li>
+        </ul>
+        <p>1回だけならできます。ただ、これを毎日、朝・昼・夜のように繰り返すと、作業そのものが判断力を削っていきます。</p>
+        <blockquote>Agentに任せるのは「売買判断」ではなく、「判断できる状態まで整理すること」です。</blockquote>
+
+        <h2>今回Agentに任せたこと</h2>
+        <p>この自動化では、Gmailにあるチャート画像を材料にしました。実際の流れは次の通りです。</p>
+        <ol>
+          <li>Gmailの送信済みメールから、対象のチャートバンドルを探す</li>
+          <li>各通貨ペアのw200画像とw800画像をそろえる</li>
+          <li>画像内のZone、Line、支持抵抗、直近の流れだけを見る</li>
+          <li>銘柄ごとに上昇、下落、横ばい・待機のシナリオを整理する</li>
+          <li>日本語のMarkdownレポートにまとめる</li>
+          <li>取引実行はしない</li>
+        </ol>
+        <p>実例では、20銘柄×w200・w800の40画像を対象にしました。さらに09時、15時、21時のように、同じ形式でレポートを作るための自動化メモも残しています。</p>
+        <p>レポート形式を固定すると、毎回、銘柄名、構造認識、主要Zone・Line、上昇・下落・待機の比重、方針、注意点が同じ形で出るため、前回との比較がしやすくなります。</p>
+
+        <h2>Agentへの依頼は、判断より作業に寄せる</h2>
+        <p>このタイプの自動化で「儲かる銘柄を教えて」と頼むのは危険です。代わりに、画像の分類、比較、観察メモ作成を依頼します。</p>
+        <pre><code>Gmailの最新チャート画像セットから、各銘柄のw200画像とw800画像をペアにしてください。
+
+各銘柄について、画像内で確認できる範囲だけを使い、次を整理してください。
+
+1. 直近の構造認識
+2. 主要なZone、Line、支持抵抗
+3. 上昇、下落、横ばい・待機の主観比重
+4. 買い条件、売り条件、待機条件
+5. 判断前に人間が確認すべきこと
+
+ライブ価格、ニュース、外部情報、取引APIは使わないでください。
+売買は実行せず、判断材料のレポートだけを作ってください。</code></pre>
+        <p>ポイントは、判断材料と実行を分けることです。Agentは疲れずに同じ型で観察を続けられます。一方、お金が動く判断や最新状況の確認は、人が見るべき場所です。</p>
+
+        <h2>人間が確認する場所</h2>
+        <ul>
+          <li>添付画像が正しいセットか</li>
+          <li>銘柄ペアが崩れていないか</li>
+          <li>画像の読み取りに無理がないか</li>
+          <li>最新価格やニュースと矛盾していないか</li>
+          <li>レポートが投資助言のように断定しすぎていないか</li>
+          <li>実際の判断前に、最新チャートを見直したか</li>
+        </ul>
+        <p>レポート作成、分類、比較、要約まではAgentが得意です。しかし、最終判断は必ず人が持つ。この線引きが、金融系自動化では重要です。</p>
+
+        <h2>金融以外の画像レポートにも応用できる</h2>
+        <p>この流れは、Gmail以外にもDrive、Slack、Notion、Discordなどに届く画像レポートへ応用できます。</p>
+        <p>最初から定期実行にする必要はありません。まずは1回分の画像セットをフォルダに入れ、次のように依頼してみてください。</p>
+        <pre><code>このフォルダにある画像を、ファイル名ごとに分類して、同じ対象の画像をペアにしてください。
+そのうえで、画像から読み取れることだけを使って、比較しやすい表にまとめてください。
+最後に、人間が確認すべき点も書いてください。</code></pre>
+        <p>これだけでも、「毎回見るだけで疲れる作業」を軽くできます。</p>
+      </div>
+
+      <section class="article-cta">
+        <p class="eyebrow">Next Article</p>
+        <h2>次は、大量ログから仮説を作る事例へ。</h2>
+        <p>約776万行の取引ログを、ウォレット、銘柄、時間軸ごとに整理した事例も公開しています。</p>
+        <div class="actions"><a class="button primary" href="./whale-trade-analysis-agent.html">Whaleログ分析事例を読む</a><a class="button secondary" href="./stock-research-agent.html">株価解析Agentの記事を読む</a></div>
+      </section>
+    </article>
+  </main>
+</body>
+</html>

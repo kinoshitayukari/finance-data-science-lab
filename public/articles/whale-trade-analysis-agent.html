@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大量の取引ログをAI Agentで分析レポート化した事例 | Financial Data Science Lab</title>
+  <meta name="description" content="約776万件の取引ログを、ウォレット、銘柄、時間軸ごとに集計し、検証可能な仮説レポートへ変えたAI Agent活用事例です。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="大量の取引ログをAI Agentで分析レポート化した事例">
+  <meta property="og:description" content="大量ログから見るべき切り口を作り、人が検証できる仮説レポートへ整理するデータ分析Agent。">
+  <meta property="og:image" content="https://finance-data-science-lab.vercel.app/assets/whale-trade-analysis-agent.png">
+  <link rel="stylesheet" href="../style.css?v=finance-lab-4">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="../index.html">Financial Data Science Lab</a>
+    <nav><a href="../index.html#articles">記事</a><a href="../library/index.html">ライブラリ</a><a href="../reports/statistics-sample-report.html">レポート</a></nav>
+  </header>
+  <main class="article-wrap note-article-page">
+    <article class="article note-article">
+      <p class="eyebrow">Case Study / Big Data × AI Agent</p>
+      <h1>大量の取引ログを<br>AI Agentで分析レポート化した事例</h1>
+      <p class="lead">約776万件の約定ログ、378ウォレット、467銘柄を対象に、AI Agentで集計、観察、仮説作成まで行った事例です。</p>
+      <div class="article-meta"><span>Theme: 金融ログ × AI Agent</span><span>Category: 大量データ分析</span><span>読了目安: 8分</span></div>
+      <img src="../assets/whale-trade-analysis-agent.png" alt="776万行の取引ログをAI Agentで分析" style="display:block;width:100%;margin:28px 0 36px;border-radius:28px;box-shadow:0 22px 58px rgba(18,52,90,.18)">
+      <section class="warning soft-warning"><h2>この記事の立ち位置</h2><p>この記事は投資助言、売買推奨、収益保証ではありません。過去ログから仮説を作る方法を紹介し、実際の売買ではなく検証工程を扱います。</p></section>
+
+      <div class="note-body">
+        <h2>データが大きいと、最初の問いを作るだけで難しい</h2>
+        <p>大量のCSVやParquetログを前にすると、人間は「どこから見ればいいか」で止まりがちです。</p>
+        <p>ファイルはある。でも、何を見ればいいかわからない。どの列が大事なのか、どの単位で集計すべきか、どの結果が異常なのか。特に取引ログのようなデータでは、行数、銘柄、ウォレットの数が多く、目視で確認するのは現実的ではありません。</p>
+        <p>今回の対象は、2026年5月26日から6月14日までのログでした。</p>
+        <table><tr><th>項目</th><th>規模</th></tr><tr><td>約定ログ</td><td>7,763,317行</td></tr><tr><td>ウォレット</td><td>378</td></tr><tr><td>銘柄</td><td>467</td></tr></table>
+        <blockquote>この量では、人が一つずつ見るのではなく、Agentに「分析の道筋」を作らせる方が現実的です。</blockquote>
+
+        <h2>今回Agentに任せたこと</h2>
+        <ol>
+          <li>銘柄ごとの損益傾向を見る</li>
+          <li>ウォレットごとの成績を見る</li>
+          <li>OPEN後の1時間、4時間、24時間の動きを比較する</li>
+          <li>複数ウォレットが同じ時間帯に同じ方向へ動くクラスターを見る</li>
+          <li>単純な追随ではなく、条件付きの仮説に整理する</li>
+          <li>注意点と使い分けをレポート化する</li>
+        </ol>
+        <p>実際のレポートでは、15分クラスター・ショート追随、選抜ウォレット4時間コピー、失敗ロング・フェードという3つの候補に整理しました。</p>
+        <p>大事なのは「この方法で取引しましょう」と言うことではありません。大量ログから、どのように観察し、どんな仮説を作り、どこに注意点を置くかを見せることです。</p>
+
+        <h2>Agentは、分析のたたき台を作るのが得意</h2>
+        <p>大量データ分析では、最初から完璧な結論を出す必要はありません。最初に必要なのは「見るべき切り口」です。</p>
+        <pre><code>この取引ログを読み、まず全体像を整理してください。
+
+見たいこと:
+1. 行数、期間、銘柄数、ウォレット数
+2. 銘柄ごとの損益傾向
+3. ウォレットごとの成績上位と下位
+4. OPEN後1時間、4時間、24時間の平均的な動き
+5. 複数ウォレットが同じ時間帯に同じ方向へ動いたイベント
+6. 仮説として検討できるパターン
+7. この分析の限界と、人間が確認すべきこと
+
+投資助言や取引実行ではなく、過去ログの分析レポートとしてまとめてください。</code></pre>
+        <p>この指示なら、Agentは「分析者の作業補助」として動きます。集計、比較、候補抽出、レポート作成はAgentに任せ、データの前提や外部環境、実際のリスクは人が確認します。</p>
+
+        <h2>人間が確認する場所</h2>
+        <ul>
+          <li>データ期間に偏りがないか</li>
+          <li>ログ開始前からの保有ポジションが抜けていないか</li>
+          <li>未決済損益の推定方法は妥当か</li>
+          <li>手数料、スリッページ、流動性を見落としていないか</li>
+          <li>外れ値が平均を歪めていないか</li>
+          <li>実運用前に別期間で検証したか</li>
+        </ul>
+        <p>さらに、同じ期間のデータでルール作成と成績評価をしていないか、ファンディングなどのコストを引いても期待値が残るか、378ウォレットから後付けで上位だけを選んでいないかも確認します。</p>
+        <p>良い結果だけでなく、Agentが見つけた仮説をどう疑い、どう次の検証へ回すかまで含めることで、実践的な教材になります。</p>
+
+        <h2>この考え方は、業務ログにも使える</h2>
+        <p>この事例は金融ログですが、同じ方法をECの売上ログ、広告クリック、問い合わせ履歴、営業活動、在庫変動、Webアクセスにも使えます。</p>
+        <ol>
+          <li>全体の件数と期間を見る</li>
+          <li>カテゴリごとに集計する</li>
+          <li>成績の良いもの、悪いものを分ける</li>
+          <li>時間軸で変化を見る</li>
+          <li>異常値や繰り返しパターンを探す</li>
+          <li>次に人が確認する候補を出す</li>
+        </ol>
+
+        <h2>まずは手元のCSVから試す</h2>
+        <p>売上、問い合わせ、SNS反応など、手元のCSVを1つ用意します。最初は次の依頼だけで十分です。</p>
+        <pre><code>このCSVを分析して、いきなり結論を出すのではなく、まず全体像を整理してください。
+行数、期間、カテゴリ、上位、下位、異常値、次に見るべき切り口を出してください。
+最後に、人間が確認すべき点も書いてください。</code></pre>
+        <p>これだけで、データの前に止まっていた状態から、「次に何を見るか」が見えるようになります。</p>
+      </div>
+
+      <section class="article-cta">
+        <p class="eyebrow">Related Articles</p>
+        <h2>画像整理と株価リサーチの事例も見る。</h2>
+        <p>金融系Agentは、答えを出させるより、データ取得、観察、比較、検証ログ作成を任せる方が安全で再現しやすくなります。</p>
+        <div class="actions"><a class="button primary" href="./gmail-chart-report-agent.html">Gmailチャート事例を読む</a><a class="button secondary" href="./stock-research-agent.html">株価解析Agentの記事を読む</a></div>
+      </section>
+    </article>
+  </main>
+</body>
+</html>
